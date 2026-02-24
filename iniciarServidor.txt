@@ -1,0 +1,2 @@
+sudo docker start librarydb
+ver status : sudo docker ps
