@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -25,6 +26,9 @@ public class Autor {
 
     @Column(name = "nacionalidade", length = 50, nullable = false) //nullabe = false : not null
     private String nacionalidade;
+
+    @OneToMany(mappedBy = "autor") //Um autor para varios livros ,e depois pego a variavel de autor da classe Livro
+    private List<Livro> livros;
 
     public Autor() { //Framework exige construtor vazio  , pois o banco de dados faz a consulta dele vazio
 
