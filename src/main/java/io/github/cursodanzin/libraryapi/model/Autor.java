@@ -34,8 +34,7 @@ public class Autor {
 
     }
 
-    public Autor(UUID id, String nome, LocalDate dataNascimento, String nacionalidade) {
-        this.id = id;
+    public Autor(String nome, LocalDate dataNascimento, String nacionalidade) {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.nacionalidade = nacionalidade;
@@ -71,5 +70,23 @@ public class Autor {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public List<Livro> getLivros() {
+        return livros;
+    }
+
+    public void setLivros(List<Livro> livros) {
+        this.livros = livros;
+    }
+
+    @Override
+    public String toString() {
+        return "Autor{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", dataNascimento=" + dataNascimento +
+                ", nacionalidade='" + nacionalidade + '\'' +
+                '}';
     }
 }
