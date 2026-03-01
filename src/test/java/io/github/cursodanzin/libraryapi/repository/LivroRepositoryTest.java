@@ -26,6 +26,14 @@ public class LivroRepositoryTest {
         livroRepository.save(livro);
     }
 
+    @Test //Sem Cascade :
+    public void salvarAutorELivroTest() { //Inserir no banco com o Cascade , puxar mais de um com o Cascade
+        Autor autor = new Autor("Luana", LocalDate.of(1999, 3, 13), "Alemã");
+        Livro livro = new Livro("98886-44", "NOVO LIVRO", LocalDate.of(1980, 1, 2), BigDecimal.valueOf(100), autor, GeneroLivro.FICCAO);
+        autorRepository.save(autor);
+        livroRepository.save(livro);
+    }
+
     @Test
     public void salvarCascadeTest() { //Inserir no banco com o Cascade , puxar mais de um com o Cascade
         Autor autor = new Autor("Joao", LocalDate.of(1999, 3, 13), "Brasileira");
