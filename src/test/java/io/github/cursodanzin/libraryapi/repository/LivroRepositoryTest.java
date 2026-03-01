@@ -40,4 +40,30 @@ public class LivroRepositoryTest {
         Livro livro = new Livro("98886-44", "UFO", LocalDate.of(1980, 1, 2), BigDecimal.valueOf(100), autor, GeneroLivro.FICCAO);
         livroRepository.save(livro);
     }
+
+    @Test
+    public void atualizarAutorDoLivro() { //Atualiza para o terceiro livro pertencer a Joana
+        UUID idLivro = UUID.fromString("11c25d26-9ce9-4212-bd8e-3e6fa2fff634");
+        Livro livroParaAtualizar = livroRepository.findById(idLivro).orElse(null);
+
+        UUID idAutor = UUID.fromString("85a76b36-83fe-4afd-a202-eb5a399aac13");
+        Autor autor = autorRepository.findById(idAutor).orElse(null);
+
+        livroParaAtualizar.setAutor(autor);
+        livroRepository.save(livroParaAtualizar);
+    }
+
+    @Test
+    public void deletar() {
+        UUID idLivro = UUID.fromString("c2123f1b-1da1-438e-8135-d55f307b3f84");
+        livroRepository.deleteById(idLivro);
+    }
+
+    @Test
+    public void deletarCascade() { //Deleta registro do autor e livro
+        UUID idLivro = UUID.fromString("c2123f1b-1da1-438e-8135-d55f307b3f84");
+        livroRepository.deleteById(idLivro);
+    }
+
+
 }
