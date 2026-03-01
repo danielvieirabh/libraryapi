@@ -31,7 +31,7 @@ public class Livro {
     @Column(name = "preco", precision = 18, scale = 2)
     private BigDecimal preco; //ou BigDecimal no lugar do Double
 
-    @ManyToOne //Muitos livros para um autor
+    @ManyToOne(cascade = CascadeType.ALL) //Muitos livros para um autor
     @JoinColumn(name = "id_autor")
     private Autor autor;
 
@@ -43,8 +43,7 @@ public class Livro {
 
     }
 
-    public Livro(UUID id, String isbn, String titulo, LocalDate dataPublicacao, BigDecimal preco, Autor autor, GeneroLivro genero) {
-        this.id = id;
+    public Livro( String isbn, String titulo, LocalDate dataPublicacao, BigDecimal preco, Autor autor, GeneroLivro genero) {
         this.isbn = isbn;
         this.titulo = titulo;
         this.dataPublicacao = dataPublicacao;

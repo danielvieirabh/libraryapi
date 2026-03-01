@@ -13,5 +13,14 @@ create table livro(
                       preco numeric(18,2),
                       id_autor uuid not null references autor(id),
                       genero varchar(30) not null,
-                      constraint chk_genero check (genero in ('FICCAO', 'FANTASIA', 'MISTERIO', 'ROMANCE', 'BUIGRAFIA', 'CIENCIA'))
+                      constraint chk_genero check (genero in ('FICCAO', 'FANTASIA', 'MISTERIO', 'ROMANCE', 'BIOGRAFIA', 'CIENCIA'))
 )
+
+drop table livro
+drop table autor
+
+
+select * from autor
+select * from livro
+
+select l.titulo , a.nome from livro l join autor a on a.id = l.id_autor --livro UFO pertence ao autor maria--
