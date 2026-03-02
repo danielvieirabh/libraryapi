@@ -6,6 +6,7 @@ import io.github.cursodanzin.libraryapi.model.enums.GeneroLivro;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -65,5 +66,15 @@ public class LivroRepositoryTest {
         livroRepository.deleteById(idLivro);
     }
 
+    @Test
+    @Transactional
+    public void buscarLivroTest() {
+        UUID id = UUID.fromString("11c25d26-9ce9-4212-bd8e-3e6fa2fff634");
+        Livro livro = livroRepository.findById(id).orElse(null);
+        System.out.println("LIVRO: ");
+        System.out.println(livro.getTitulo());
+        System.out.println("Nome do Autor: ");
+        System.out.println(livro.getAutor().getNome());
+    }
 
 }
