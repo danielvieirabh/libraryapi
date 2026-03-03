@@ -52,6 +52,7 @@ public class Livro {
         this.genero = genero;
     }
 
+
     public Autor getAutor() {
         return autor;
     }

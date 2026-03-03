@@ -1,11 +1,15 @@
 package io.github.cursodanzin.libraryapi.repository;
 
 import io.github.cursodanzin.libraryapi.model.Autor;
+import io.github.cursodanzin.libraryapi.model.Livro;
+import io.github.cursodanzin.libraryapi.model.enums.GeneroLivro;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -15,6 +19,8 @@ public class AutorRepositoryTest {
 
     @Autowired
     AutorRepository autorRepository;
+    @Autowired
+    LivroRepository livroRepository;
 
     @Test
     public void salvarTest() {
@@ -62,6 +68,20 @@ public class AutorRepositoryTest {
         UUID id = UUID.fromString("daa2ce86-8ff4-4217-995d-19eedb93ba58");
         Autor jose = autorRepository.findById(id).get(); //get porque tenho certeza que o autor esta la
         autorRepository.delete(jose);
+    }
+
+    @Test
+    public void salvarAutorComLivrosTest() {
+        Autor autor = new Autor("Messi", LocalDate.of(1989, 3, 13), "Argentino");
+        Livro livro = new Livro("76885-44", "The Avengers", LocalDate.of(2018, 1, 2), BigDecimal.valueOf(204), autor, GeneroLivro.MISTERIO);
+        Livro livro2 = new Livro("76885-4314", "The Avengers Ultimato", LocalDate.of(2019, 1, 2), BigDecimal.valueOf(204),autor, GeneroLivro.MISTERIO);
+
+        autor.setLivros(new ArrayList<>());
+        autor.getLivros().add(livro);
+        autor.getLivros().add(livro2);
+
+        autorRepository.save(autor);
+        livroRepository.saveAll(autor.getLivros());
     }
 
 
