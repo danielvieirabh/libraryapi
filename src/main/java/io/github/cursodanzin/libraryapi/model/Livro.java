@@ -31,7 +31,7 @@ public class Livro {
     @Column(name = "preco", precision = 18, scale = 2)
     private BigDecimal preco; //ou BigDecimal no lugar do Double
 
-    @ManyToOne//(cascade = CascadeType.ALL) //Muitos livros para um autor
+    @ManyToOne(fetch = FetchType.LAZY)//(cascade = CascadeType.ALL) //Muitos livros para um autor
     @JoinColumn(name = "id_autor")
     private Autor autor;
 
@@ -119,5 +119,17 @@ public class Livro {
     @Override
     public int hashCode() {
         return Objects.hashCode(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Livro{" +
+                "id=" + id +
+                ", isbn='" + isbn + '\'' +
+                ", titulo='" + titulo + '\'' +
+                ", dataPublicacao=" + dataPublicacao +
+                ", preco=" + preco +
+                ", genero=" + genero +
+                '}';
     }
 }

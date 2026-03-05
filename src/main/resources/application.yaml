@@ -10,4 +10,7 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-#      usar create-drop tambem se quiser
+      #      usar create-drop tambem se quiser
+    properties:
+      hibernate.format_sql: true
+      # Formata o sql no terminal

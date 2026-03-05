@@ -27,7 +27,7 @@ public class Autor {
     @Column(name = "nacionalidade", length = 50, nullable = false) //nullabe = false : not null
     private String nacionalidade;
 
-    @OneToMany(mappedBy = "autor") //Um autor para varios livros ,e depois pego a variavel de autor da classe Livro
+    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, fetch = FetchType.LAZY) //Um autor para varios livros ,e depois pego a variavel de autor da classe Livro, o padrao e LAZY
     private List<Livro> livros;
 
     public Autor() { //Framework exige construtor vazio  , pois o banco de dados faz a consulta dele vazio

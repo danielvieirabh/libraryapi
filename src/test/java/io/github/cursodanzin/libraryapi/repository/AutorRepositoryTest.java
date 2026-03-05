@@ -6,6 +6,7 @@ import io.github.cursodanzin.libraryapi.model.enums.GeneroLivro;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -82,6 +83,21 @@ public class AutorRepositoryTest {
 
         autorRepository.save(autor);
         livroRepository.saveAll(autor.getLivros());
+    }
+
+    @Test
+    public void listarLivrosAutor() { //Buscar livros de um autor
+        UUID id = UUID.fromString("2f3c7cbd-ae0b-4515-aab0-a5bd769d690a");
+        Autor autor = autorRepository.findById(id).get();
+
+        //Buscar livros do autor
+        List<Livro> livrosLista = livroRepository.findByAutor(autor);
+        autor.setLivros(livrosLista);
+        List<Livro> livro = autor.getLivros();
+
+        for (Livro livros : livro) {
+            System.out.println(livros);
+        }
     }
 
 
