@@ -102,4 +102,12 @@ public class LivroRepositoryTest {
         }
     }
 
+    @Test
+    public void pesquisaPorTituloOrIsbn() { //Retorna 2 livros
+        List<Livro> livroList =  livroRepository.findByTituloOrIsbn("The Avengers" , "98886-44"); //Sempre valueOf por causa da precisao
+        for (Livro livro : livroList) {
+            System.out.println("Dados do livro " + livro);
+        }
+    }
+
 }
