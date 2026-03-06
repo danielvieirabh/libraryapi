@@ -110,4 +110,43 @@ public class LivroRepositoryTest {
         }
     }
 
+    @Test
+    public void pesquisaPorDataPublicacaoBetween() { //Retorna 2 livros
+        List<Livro> livroList =  livroRepository.findByDataPublicacaoBetween(LocalDate.of(2018, 1, 2), LocalDate.now()); // ENtre 2018 a hoje
+        for (Livro livro : livroList) {
+            System.out.println("Dados do livro " + livro);
+        }
+    }
+
+    @Test
+    public void listartLivrosComQueryJPQL() {
+        List<Livro> livro = livroRepository.listarTodosOrdernadoPOrTituloAndPreco();
+        for (Livro livros : livro) {
+            System.out.println(livros);
+        }
+    }
+
+    @Test
+    public void listarAutoresDosLivros() { //listar autores que tenha livros
+        List<Autor> autor = livroRepository.listarAutoresDosLivros();
+        for (Autor autores : autor) {
+            System.out.println(autores);
+        }
+    }
+
+    @Test
+    public void listarTitulosNaoRepetidosDosLivros() { //listar autores que tenha livros
+        List<String> livro = livroRepository.listarNomesDiferentesLivros();
+        for (String livros : livro) {
+            System.out.println(livros);
+        }
+    }
+
+    @Test
+    public void listarGenerosAutoresBrasileiros() { //listar autores que tenha livros
+        List<String> livro = livroRepository.listarGenerosAutoresBrasileiros();
+        for (String livros : livro) {
+            System.out.println(livros);
+        }
+    }
 }
