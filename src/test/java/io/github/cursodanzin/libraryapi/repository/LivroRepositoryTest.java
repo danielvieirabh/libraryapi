@@ -24,7 +24,7 @@ public class LivroRepositoryTest {
     public void salvarTest() { //Inserir no banco
         UUID id = UUID.fromString("2812ea9e-9b22-464b-9135-6eff4c5f18a8");
         Autor autor = autorRepository.findById(id).orElse(null);
-        Livro livro = new Livro("66666-44", "UFO", LocalDate.of(1980, 1, 2), BigDecimal.valueOf(100), autor, GeneroLivro.FICCAO);
+        Livro livro = new Livro("45633-44", "CIENCIA DE VOCE", LocalDate.of(2000, 1, 2), BigDecimal.valueOf(100), autor, GeneroLivro.CIENCIA);
         livroRepository.save(livro);
     }
 
@@ -165,4 +165,16 @@ public class LivroRepositoryTest {
             System.out.println("Listagem por genero: " + livro);
         }
     }
+
+    @Test
+    public void deletePorGeneroTest() { //Preciso de um   @Transactional  para Operacao de escrita : insert , update , delete
+        livroRepository.deleteByGenero(GeneroLivro.CIENCIA);
+    }
+
+    @Test
+    public void updateDataPublicacaoTest() { //Muda todas as datas para 2000
+        livroRepository.updateDataPublicacao(LocalDate.of(2000, 1, 1)); //ano 2000
+    }
+
+
 }
