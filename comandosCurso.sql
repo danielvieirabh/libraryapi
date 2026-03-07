@@ -23,12 +23,22 @@ drop table autor
 select * from autor
 select * from livro
 
-select l.titulo , a.nome from livro l join autor a on a.id = l.id_autor --livro UFO pertence ao autor maria--
+select l.id, l.titulo , a.nome from livro l join autor a on a.id = l.id_autor --livro UFO pertence ao autor maria--
+
+select distinct titulo from livro --SOmente titulos diferentes--
+
+--Like : que tem que ter no nome o Avengers --
+select * from livro where titulo like '%Avengers%';
+
+--Like : que comece com UF
+select * from livro where titulo like 'UF%';
+
+--Like : que termine com UF
+select * from livro where titulo like '%UF';
+
+select l.* from livro as l order by l.titulo , l.preco
+
+select a.* from livro l join autor as a on a.id = l.id_autor
 
 
-
---BUSCA O NOME DO LIVRO E AUTOR --
-select l1_0.id,a1_0.id,a1_0.data_nascimento,a1_0.nacionalidade,a1_0.nome,l1_0.data_publicacao,l1_0.genero,l1_0.isbn,l1_0.preco,l1_0.titulo
-from livro l1_0
-    left join public.autor a1_0 on a1_0.id=l1_0.id_autor
-where l1_0.id=?
+select l.genero from livro as l join autor as a on l.id_autor  = a.id where nacionalidade = 'Brasileira' order by l.genero

@@ -175,6 +175,4 @@ public class LivroRepositoryTest {
     public void updateDataPublicacaoTest() { //Muda todas as datas para 2000
         livroRepository.updateDataPublicacao(LocalDate.of(2000, 1, 1)); //ano 2000
     }
-
-
 }
