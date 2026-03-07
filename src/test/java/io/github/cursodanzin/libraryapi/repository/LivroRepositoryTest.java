@@ -149,4 +149,20 @@ public class LivroRepositoryTest {
             System.out.println(livros);
         }
     }
+
+    @Test
+    public void listarPorGeneroQueryParamTest() {
+        List<Livro> resultado = livroRepository.findByGenero(GeneroLivro.MISTERIO, "dataPublicacao"); //variavel dataPublicao la da classe Livro
+        for (Livro livro : resultado) {
+            System.out.println("Listagem por genero: " + livro);
+        }
+    }
+
+    @Test
+    public void listarPorGeneroPositionalParamTest() {
+        List<Livro> resultado = livroRepository.findByGeneroPositionalParametros(GeneroLivro.MISTERIO, "preco"); //variavel preco la da classe Livro, ordenar por preco
+        for (Livro livro : resultado) {
+            System.out.println("Listagem por genero: " + livro);
+        }
+    }
 }

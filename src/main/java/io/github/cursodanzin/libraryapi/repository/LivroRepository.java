@@ -2,9 +2,11 @@ package io.github.cursodanzin.libraryapi.repository;
 
 import io.github.cursodanzin.libraryapi.model.Autor;
 import io.github.cursodanzin.libraryapi.model.Livro;
+import io.github.cursodanzin.libraryapi.model.enums.GeneroLivro;
 import org.springframework.cglib.core.Local;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -53,4 +55,14 @@ public interface LivroRepository extends JpaRepository<Livro, UUID> {
         order by l.genero
 """)
     List<String> listarGenerosAutoresBrasileiros();
+
+    //Usando parametros tradicional
+    @Query("select l from Livro l where l.genero = :nomeDoParametro order by :paramOrdenacao")
+    List<Livro> findByGenero(@Param("nomeDoParametro") GeneroLivro generoLivro, @Param("paramOrdenacao") String nomePropriedade);
+
+    //Posicao de parametros , segunda maneira :
+    @Query("select l from Livro l where l.genero = ?1 order by ?2")
+    List<Livro> findByGeneroPositionalParametros(GeneroLivro generoLivro, String nomePropriedade);
+
+
 }
